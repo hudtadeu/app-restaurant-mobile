@@ -7,6 +7,15 @@ import { Product, ProductImage, ProductDetails, Separator, AddToCardButton } fro
 import { formatCurrency } from "../../utils/formatCurrency";
 import { PlusCircle } from "../Icons/PlusCircle";
 
+// Importar imagens locais
+import quatroQueijosImg from '../../assets/images/quatro-queijos.png';
+import cocaColaImg from '../../assets/images/coca-cola.png';
+
+const productImages: Record<string, any> = {
+  '1668472896991-quatro-queijos.png': quatroQueijosImg,
+  '1668473462705-coca-cola.png': cocaColaImg,
+};
+
 export function Menu() {
   return (
     <FlatList
@@ -18,7 +27,7 @@ export function Menu() {
       renderItem={({ item: product}) => (
         <Product>
           <ProductImage
-          source={{ uri: `http://192.168.1.144:3001/uploads/${product.imagePath}` }}
+            source={productImages[product.imagePath]}
           />
           <ProductDetails>
             <Text weight="600">{product.name}</Text>
