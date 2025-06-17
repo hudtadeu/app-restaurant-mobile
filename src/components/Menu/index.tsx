@@ -3,7 +3,7 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { products } from "../../mocks/products";
 import { Text } from "../Text";
 
-import { Product, ProductImage, ProductDetails, Separator, AddToCardButton } from "./styles";
+import { ProductContainer, ProductImage, ProductDetails, Separator, AddToCardButton } from "./styles";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { PlusCircle } from "../Icons/PlusCircle";
 
@@ -12,6 +12,9 @@ import quatroQueijosImg from '../../assets/images/quatro-queijos.png';
 import cocaColaImg from '../../assets/images/coca-cola.png';
 import chickenImg from '../../assets/images/chicken.png';
 import sucoLaranjaImg from '../../assets/images/suco-de-laranja.png';
+import { ProductModal } from "../ProductModal";
+import { useState } from "react";
+import { Product } from "../../types/Product";
 
 const productImages: Record<string, any> = {
   '1668472896991-quatro-queijos.png': quatroQueijosImg,
@@ -21,7 +24,21 @@ const productImages: Record<string, any> = {
 };
 
 export function Menu() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<null | Product>(null);
+
+  function handleOpenModal(product: Product) {
+    setSelectedProduct(product);
+    setIsModalVisible(true);
+  }
+
   return (
+    <>
+    <ProductModal
+      visible={isModalVisible}
+      onClose={() => setIsModalVisible(false)}
+      product={selectedProduct}
+    />
     <FlatList
       data={products}
       style={{ marginTop: 32 }}
@@ -29,7 +46,7 @@ export function Menu() {
       keyExtractor={product => product._id}
       ItemSeparatorComponent={Separator}
       renderItem={({ item: product}) => (
-        <Product>
+        <ProductContainer onPress={() => handleOpenModal(product)}>
           <ProductImage
             source={productImages[product.imagePath]}
           />
@@ -42,8 +59,9 @@ export function Menu() {
           <AddToCardButton>
             <PlusCircle />
           </AddToCardButton>
-        </Product>
+        </ProductContainer>
       )}
     />
+    </>
   );
 }

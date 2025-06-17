@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Overlay = styled.View`
+export const Overlay = styled.KeyboardAvoidingView`
   flex: 1;
   background-color: rgba(0, 0, 0, 0.6);
   justify-content: stretch;
