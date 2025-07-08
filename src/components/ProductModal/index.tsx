@@ -42,7 +42,7 @@ export function ProductModal({ visible, onClose, product }: ProductModalProps) {
         </Header>
 
         {product.ingredients.length > 0 && (
-                  <IngredientsContainer>
+         <IngredientsContainer>
           <Text weight="600" color="#666">Ingredientes</Text>
 
           <FlatList
