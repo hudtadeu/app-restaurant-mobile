@@ -37,7 +37,7 @@ export const products = [
     ingredients: [],
   },
    {
-    _id: '6372e276a381106c0f854cb3',
+    _id: '23423423432342343222',
     name: 'Chicken Burger',
     description: 'Frango gourmet entre pães – simplesmente perfeito!',
     imagePath: '1668473462705-chicken.png',
@@ -45,10 +45,18 @@ export const products = [
     ingredients: [],
   },
   {
-    _id: '6372e276a381106c0f854cb3',
+    _id: '234234234234234234',
     name: 'Suco de Laranja',
     description: 'Suco natural de laranja, refrescante e saudável!',
     imagePath: '1668473462705-suco-de-laranja.png',
+    price: 7,
+    ingredients: [],
+  },
+    {
+    _id: '31231231231231111111',
+    name: 'Coca cola',
+    description: 'Coca zero grau, felicidade no copo!',
+    imagePath: '1668473462705-coca-cola.png',
     price: 7,
     ingredients: [],
   },
