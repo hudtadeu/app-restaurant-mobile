@@ -19,7 +19,7 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
   }
 
   function handleAddToCart() {
-    onAddToCart(product);
+    onAddToCart(product!);
     onClose();
   }
 
@@ -79,7 +79,6 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
 
             <Button
               onPress={handleAddToCart}
-              disabled={false}
             >
               Adicionar ao pedido
             </Button>
