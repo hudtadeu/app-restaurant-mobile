@@ -17,6 +17,7 @@ export function Main() {
 
   function handleSaveTable(table: string) {
     setSelectedTable(table);
+    setIsTableModalVisible(false);
   }
 
   function handleCancelOrder() {
@@ -24,7 +25,13 @@ export function Main() {
   }
 
   function handleAddToCart(product: Product) {
-    alert(product.name);
+    if (!selectedTable) {
+      setIsTableModalVisible(true);
+    }
+    setCartItems((prevState) => prevState.concat({
+      quantity: 1,
+      product,
+    }));
   }
 
   return (
@@ -46,7 +53,7 @@ export function Main() {
       <Footer>
         {/*<FooterContainer> */}
           {!selectedTable && (
-            <Button onPress={() => setIsTableModalVisible(true)}>
+            <Button onPress={() => setIsTableModalVisible(true)} disabled={false}>
               Novo Pedido
             </Button>
           )}

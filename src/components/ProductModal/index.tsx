@@ -17,6 +17,12 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
   if (!product) {
     return null;
   }
+
+  function handleAddToCart() {
+    onAddToCart(product);
+    onClose();
+  }
+
   return (
     <Modal
       visible={visible}
@@ -71,7 +77,10 @@ export function ProductModal({ visible, onClose, product, onAddToCart }: Product
               <Text size={20} weight="600">{formatCurrency(product.price)}</Text>
             </PriceContainer>
 
-            <Button onPress={() => onAddToCart(product)}>
+            <Button
+              onPress={handleAddToCart}
+              disabled={false}
+            >
               Adicionar ao pedido
             </Button>
           </FooterContainer>
