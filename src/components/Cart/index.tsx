@@ -22,7 +22,7 @@ interface CartProps {
 }
 
 export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder, selectedTable }: CartProps) {
-  const [isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const total = cartItems.reduce((acc, cartItem) => {
@@ -30,6 +30,7 @@ export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder, selectedTa
   }, 0);
 
   async function handleConfirmOrder() {
+    setIsLoading(true);
     await api.post('/orders', {
       table: selectedTable,
       products: cartItems.map(cartItem => ({
@@ -38,6 +39,8 @@ export function Cart({ cartItems, onAdd, onDecrement, onConfirmOrder, selectedTa
       })),
     });
 
+    setIsLoading(false);
+    setIsModalVisible(true);
   }
 
   function handleOk() {
